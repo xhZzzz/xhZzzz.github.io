@@ -153,12 +153,12 @@
 <li><a target="_blank" rel="noopener" href="https://proceedings.neurips.cc/paper/2013/file/9aa42b31882ec039965f3c4923ce901b-Paper.pdf">Distributed Representations of Words and Phrases and their Compositionality</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.jmlr.org/papers/volume3/tmp/bengio03a.pdf">A Neural Probabilistic Language Model</a>  </li>
 </ul>
-<p><strong>语言模型(Language Model—“LM”)</strong>  </p>
+<p><strong>语言模型(Language Model—-“LM”)</strong>  </p>
 <ul>
 <li>概念：语言模型是计算一个句子是句子的概率<br>Example： <ul>
-<li>今天下雨了———-0.9</li>
-<li>烬天瞎与乐———-0.001</li>
-<li>净添吓玉勒———-0.00005</li>
+<li>今天下雨了—————0.9</li>
+<li>烬天瞎与乐—————0.001</li>
+<li>净添吓玉勒—————0.00005</li>
 </ul>
 </li>
 <li>类别<ul>
@@ -167,13 +167,12 @@
 </ul>
 </li>
 </ul>
-<p><strong>统计语言模型</strong>：通过概率来刻画语言模型<br>$$𝑃(𝑠) = 𝑃(𝑤1, 𝑤2, … , 𝑤𝑛)= 𝑃(𝑤1)P(𝑤2|𝑤1)P(𝑤3|𝑤1𝑤2)…P(𝑤𝑛|𝑤1𝑤2 … 𝑤𝑛−1)$$</p>
-<p>如何求解$P(w_i)$?</p>
+<p><strong>统计语言模型</strong>：通过概率来刻画语言模型  </p>
+<script type="math/tex; mode=display">𝑃(𝑠) = 𝑃(𝑤1, 𝑤2, … , 𝑤𝑛)= 𝑃(𝑤1)P(𝑤2|𝑤1)P(𝑤3|𝑤1𝑤2)…P(𝑤𝑛|𝑤1𝑤2 … 𝑤𝑛−1)</script><p>如何求解$P(w_i)$?</p>
 <blockquote>
 <p>用语料的频率代替概率（频率学派、条件学派） </p>
 <blockquote>
-<p>$$P(w_i)=\frac{count(w_i)}{N}$$  </p>
-</blockquote>
+<script type="math/tex; mode=display">P(w_i)=\frac{count(w_i)}{N}</script></blockquote>
 </blockquote>
 <p><img src="/2021/09/29/Word2Vec%E7%AC%94%E8%AE%B0/image-20210929214832155.png" alt="image-20210929214832155"></p>
 <p><strong>语言模型中存在的一些问题</strong></p>
@@ -191,20 +190,15 @@
 <p>$C(w)$:表示w出现的次数。<br>$N$:表示词库的维度大小<br>$V$:表示句子中词的个数</p>
 <h2 id="2、Add-K-Smoothing"><a href="#2、Add-K-Smoothing" class="headerlink" title="2、Add-K Smoothing"></a>2、Add-K Smoothing</h2><blockquote>
 <p>Origine: $P(w)=\frac{C(w)}{N}$</p>
-</blockquote>
-<blockquote>
 <p>Laplace Smoothing:$P(w)=\frac{C(w)+K}{N+K*V}$</p>
 </blockquote>
 <h2 id="马尔科夫假设"><a href="#马尔科夫假设" class="headerlink" title="马尔科夫假设"></a>马尔科夫假设</h2><p>下一个词的出现仅依赖于前面的一个词或几个词  </p>
-<p>$$𝑃(𝑠) = 𝑃(𝑤1, 𝑤2, … , 𝑤𝑛)= 𝑃(𝑤<em>1)P(𝑤_2|𝑤_1)P(𝑤_3|𝑤_1𝑤_2)…P(𝑤_𝑛|𝑤_1𝑤_2 … 𝑤</em>{𝑛−1})$$</p>
-<p><strong>unigram</strong>:$𝑃(𝑠) = 𝑃(𝑤1, 𝑤2, … , 𝑤𝑛)= 𝑃(𝑤_1)P(𝑤_2)P(𝑤_3)…P(𝑤_𝑛)$</p>
-<p><strong>bigram</strong>:$𝑃(𝑠) = 𝑃(𝑤1, 𝑤2, … , 𝑤𝑛)= 𝑃(𝑤<em>1)P(𝑤_2|𝑤_1)P(𝑤_3|𝑤_2)…P(𝑤_𝑛|𝑤</em>{𝑛−1})$</p>
-<p><strong>trigram</strong>:$𝑃(𝑠) = 𝑃(𝑤1, 𝑤2, … , 𝑤𝑛)= 𝑃(𝑤<em>1)P(𝑤_2|𝑤_1)P(𝑤_3|𝑤_1𝑤_2)…P(𝑤𝑛|𝑤</em>{n-3}𝑤_{n-2}𝑤_{n-1})$</p>
+<script type="math/tex; mode=display">𝑃(𝑠) = 𝑃(𝑤1, 𝑤2, … , 𝑤𝑛)= 𝑃(𝑤_1)P(𝑤_2|𝑤_1)P(𝑤_3|𝑤_1𝑤_2)…P(𝑤_𝑛|𝑤_1𝑤_2 … 𝑤_{𝑛−1})</script><p><strong>unigram</strong>:$𝑃(𝑠) = 𝑃(𝑤1, 𝑤2, … , 𝑤𝑛)= 𝑃(𝑤<em>1)P(𝑤_2)P(𝑤_3)…P(𝑤</em>𝑛)$</p>
+<p><strong>bigram</strong>:$𝑃(𝑠) = 𝑃(𝑤1, 𝑤2, … , 𝑤𝑛)= 𝑃(𝑤<em>1)P(𝑤_2|𝑤_1)P(𝑤_3|𝑤_2)…P(𝑤</em>𝑛|𝑤_{𝑛−1})$</p>
+<p><strong>trigram</strong>:$𝑃(𝑠) = 𝑃(𝑤1, 𝑤2, … , 𝑤𝑛)= 𝑃(𝑤<em>1)P(𝑤_2|𝑤_1)P(𝑤_3|𝑤_1𝑤_2)…P(𝑤𝑛|𝑤</em>{n-3}𝑤<em>{n-2}𝑤</em>{n-1})$</p>
 <p><strong>K-gram</strong>:$𝑃(𝑠) = 𝑃(𝑤1, 𝑤2, … , 𝑤𝑛)= 𝑃(𝑤<em>1)P(𝑤_2|𝑤_1)P(𝑤_3|𝑤_1𝑤_2)…P(𝑤𝑛|𝑤</em>{n-k}…𝑤_{n-1})$</p>
 <p><img src="/2021/09/29/Word2Vec%E7%AC%94%E8%AE%B0/image-20210929231331739.png" alt="image-20210929231331739"></p>
-<h1 id="语言模型的评价指标：困惑度-Perplexity"><a href="#语言模型的评价指标：困惑度-Perplexity" class="headerlink" title="语言模型的评价指标：困惑度(Perplexity)"></a>语言模型的评价指标：困惑度(Perplexity)</h1><p>$$𝑃(𝑠) = 𝑃(𝑤1, 𝑤2, … , 𝑤𝑛)= 𝑃(𝑤<em>1)P(𝑤_2|𝑤_1)P(𝑤_3|𝑤_1𝑤_2)…P(𝑤_𝑛|𝑤_1𝑤_2 … 𝑤</em>{𝑛−1})$$</p>
-<p>$$PP(s)=P(w_1,w_2,…,w_n)^{-\frac{1}{n}}=\sqrt[N]{\frac{1}{P(w_1,w_2,…,w_n)}}$$</p>
-<blockquote>
+<h1 id="语言模型的评价指标：困惑度-Perplexity"><a href="#语言模型的评价指标：困惑度-Perplexity" class="headerlink" title="语言模型的评价指标：困惑度(Perplexity)"></a>语言模型的评价指标：困惑度(Perplexity)</h1><script type="math/tex; mode=display">𝑃(𝑠) = 𝑃(𝑤1, 𝑤2, … , 𝑤𝑛)= 𝑃(𝑤_1)P(𝑤_2|𝑤_1)P(𝑤_3|𝑤_1𝑤_2)…P(𝑤_𝑛|𝑤_1𝑤_2 … 𝑤_{𝑛−1})</script><script type="math/tex; mode=display">PP(s)=P(w_1,w_2,...,w_n)^{-\frac{1}{n}}=\sqrt[N]{\frac{1}{P(w_1,w_2,...,w_n)}}</script><blockquote>
 <p>句子概率$P(s)$越大,语言模型越好，困惑度$PP(s)$越小</p>
 </blockquote>
 <h1 id="词的表示方法"><a href="#词的表示方法" class="headerlink" title="词的表示方法"></a>词的表示方法</h1><h2 id="One-hot编码（独热编码）"><a href="#One-hot编码（独热编码）" class="headerlink" title="One-hot编码（独热编码）"></a>One-hot编码（独热编码）</h2><ul>
@@ -222,8 +216,6 @@
 <li>“麦克风”表示为[0 0 0 0 0 1 0 …]</li>
 </ul>
 <p>$V(话筒)*V(麦克风)=0$我们希望通过向量的点乘表示出向量之间的一定的关系，话筒和麦克风之间显然有一定关系，但是one-hot编码后无法表征出来</p>
-</blockquote>
-<blockquote>
 <p>稀疏矩阵的表示方法:</p>
 <ul>
 <li>“话筒”  3:1</li>
@@ -248,7 +240,7 @@
 <li>循环神经网络语言模型(RNNLM)</li>
 </ul>
 <blockquote>
-<p>语言模型是无监督的（不需要标注语料）—用周围词或之前的词就可以得到词的概率生成样本训练</p>
+<p>语言模型是无监督的（不需要标注语料）—-用周围词或之前的词就可以得到词的概率生成样本训练</p>
 <p>我们目标是通过无监督的方法进行监督学习</p>
 </blockquote>
 <p><strong>1、NNLM</strong></p>
@@ -262,28 +254,28 @@
 </ul>
 <p><img src="/2021/09/29/Word2Vec%E7%AC%94%E8%AE%B0/image-20210930001207016.png" alt="image-20210930001207016"></p>
 <blockquote>
-<p>相当于用one-hot编码向量来查找自己的词向量(本图例子即为$(w_{41},w_{42},w_{43})$)</p>
-<p>词向量矩阵$V<em>D$其中$D$是特征数，我们自己设置的*<em>超参数</em></em></p>
+<p>相当于用one-hot编码向量来查找自己的词向量(本图例子即为$(w<em>{41},w</em>{42},w_{43})$)</p>
+<p>词向量矩阵$V<em>D$其中$D$是特征数，我们自己设置的<em>*超参数</em></em></p>
 </blockquote>
 <ul>
 <li><p>隐藏层：一个以tanh为激活函数的全连接层</p>
 <ul>
-<li>$$a=tanh(d+Ux)$$</li>
+<li><script type="math/tex; mode=display">a=tanh(d+Ux)</script></li>
 </ul>
 </li>
 <li><p>输出层：一个全连接层，后面接一个softmax函数来生成概率分布</p>
 <ul>
-<li>$$y=b+Wa$$</li>
-<li>其中y是一个$1*V$的向量：$P(w_t|w_{t-n},…,w_{t-1})-\frac{exp(y_{w_t})}{\sum_i{exp(y_i)}})$</li>
+<li><script type="math/tex; mode=display">y=b+Wa</script></li>
+<li>其中y是一个$1*V$的向量：$P(w<em>t|w</em>{t-n},…,w<em>{t-1})-\frac{exp(y</em>{w_t})}{\sum_i{exp(y_i)}})$</li>
 </ul>
 </li>
 <li><p>Perplexity和Loss</p>
 <ul>
-<li>$$Loss:L=-\frac{1}{T}\sum_{i=1}^{T}logp(w_i|w_{i-n+1},…,w_{i-1})$$</li>
-<li>$$PP(s)=P(w_1,w_2,…,w_T)^{-\frac{1}{T}}=\sqrt[T]{\frac{1}{P(w_1,w_2,…,w_T)}}$$</li>
-<li>$$log(PP(s))=-\frac{1}{T}log(P(w_1)P(w_2|w_1),…,P(w_T|w_{T-n+1},…,w_{T-1}))$$<ul>
-<li>$$log(PP(s))=-\frac{1}{T}(logP(w_1)+logP(w_2|w_1)+…+P(w_T|w_{T-n+1},…,w_{T-1}))$$</li>
-<li>$$PP(s)=e^L$$</li>
+<li><script type="math/tex; mode=display">Loss:L=-\frac{1}{T}\sum_{i=1}^{T}logp(w_i|w_{i-n+1},...,w_{i-1})</script></li>
+<li><script type="math/tex; mode=display">PP(s)=P(w_1,w_2,...,w_T)^{-\frac{1}{T}}=\sqrt[T]{\frac{1}{P(w_1,w_2,...,w_T)}}</script></li>
+<li><script type="math/tex; mode=display">log(PP(s))=-\frac{1}{T}log(P(w_1)P(w_2|w_1),...,P(w_T|w_{T-n+1},...,w_{T-1}))</script><ul>
+<li><script type="math/tex; mode=display">log(PP(s))=-\frac{1}{T}(logP(w_1)+logP(w_2|w_1)+...+P(w_T|w_{T-n+1},...,w_{T-1}))</script></li>
+<li><script type="math/tex; mode=display">PP(s)=e^L</script></li>
 </ul>
 </li>
 </ul>
@@ -316,10 +308,10 @@
 </ul>
 <p><img src="/2021/09/29/Word2Vec%E7%AC%94%E8%AE%B0/image-20210930104300923.png" alt="image-20210930104300923"></p>
 <blockquote>
-<p>层次softmax只需要$log_2V$个sigmoid————————-（V–&gt;$log_2V$）</p>
+<p>层次softmax只需要$log_2V$个sigmoid————————————-（V—&gt;$log_2V$）</p>
 </blockquote>
 <p><strong>Huffman树的构建</strong>：带权重路径最短二叉树(最优二叉树)</p>
-<p><img src="/2021/09/29/Word2Vec%E7%AC%94%E8%AE%B0/image-20210930104758929.png"></p>
+<p><img src="/2021/09/29/Word2Vec%E7%AC%94%E8%AE%B0/image-20210930104758929.png" alt></p>
 <blockquote>
 <p>左边是常见的二叉树，右边是左图转换过的最优二叉树。<br><strong>规则</strong>：最重要的放在最前面，由此构成huffman树</p>
 </blockquote>
@@ -338,8 +330,25 @@
 <li><p>通过求代价函数的权重梯度，我们可以一次性对所有参数的$\theta$进行优化，但是对于大语料库来说，每次等全部计算完再优化升级我们将等待很长时间。所以我们采用随机梯度下降法（SGD），即每次完成一次计算就进行升级。</p>
 </li>
 <li><p>我们每次只对窗口中出现的几个单词进行升级，但是在计算梯度的过程中，我们是对整个参数矩阵进行运算，这样参数矩阵中大部分值都是0</p>
-<p>$$\nabla_{\theta}J_t(\theta)=\left[\begin{matrix}<br>0\<br>.\<br>.\<br>.\<br>\nabla_{u_{like}}\<br>.\<br>.\<br>.\<br>0\<br>\nabla_{u_I}\<br>.\<br>.\<br>.\<br>\nabla_{u_{learning}}\<br>.\<br>.\<br>.\<br>\end{matrix}\right]\in\Bbb{R}^{2dV}$$</p>
-<blockquote>
+<script type="math/tex; mode=display">\nabla_{\theta}J_t(\theta)=\left[\begin{matrix}
+0\\
+.\\
+.\\
+.\\
+\nabla_{u_{like}}\\
+.\\
+.\\
+.\\
+0\\
+\nabla_{u_I}\\
+.\\
+.\\
+.\\
+\nabla_{u_{learning}}\\
+.\\
+.\\
+.\\
+\end{matrix}\right]\in\Bbb{R}^{2dV}</script><blockquote>
 <p>计算效率低下</p>
 </blockquote>
 </li>
@@ -352,9 +361,7 @@
 <ul>
 <li>核心思想：计算目标单词和窗口单词中单词的真实单词对“得分”，再加一些“噪声”，即词表中的随机单词和目标单词的得分。真实单词对得分和噪声作为代价函数。每次优化参数只关注代价函数中涉及的词向量</li>
 </ul>
-<p>$$J(\theta)=\frac{1}{T}\sum_{t=1}^TJ_t(\theta)$$</p>
-<p>$$J_t(\theta)=log\sigma(u_o^Tv_c)+\sum_{i=1}^k\Bbb{E}_jp(w)[log\sigma(-u_j^Tv_c)]$$</p>
-<blockquote>
+<script type="math/tex; mode=display">J(\theta)=\frac{1}{T}\sum_{t=1}^TJ_t(\theta)</script><script type="math/tex; mode=display">J_t(\theta)=log\sigma(u_o^Tv_c)+\sum_{i=1}^k\Bbb{E}_jp(w)[log\sigma(-u_j^Tv_c)]</script><blockquote>
 <ul>
 <li><p>我们仅对k个参数进行了采样</p>
 </li>
@@ -410,4 +417,8 @@
   MathJax.startup.document.state(0)
   MathJax.texReset()
   MathJax.typeset()
-}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
